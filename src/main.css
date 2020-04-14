@@ -114,9 +114,14 @@ body , html{
     width: 100%;
     font-family: sans-serif;
 }
+.loading >p{
+    font-size: 0.4em;
+    text-align: justify;
+    width: 400px;
+}
 .loading >img{
     opacity: 0.4;
-    width: 300px;
+    width: 200px;
 }
 .searchbar{
     display: flex;

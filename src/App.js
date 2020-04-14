@@ -9,8 +9,10 @@ import './main.css';
 import logo from './img/hastelady.svg'
 
 
+
+
 import {SearchBar,VideoDetail,VideoList} from './components';
-import { height, width, maxWidth, minHeight } from '@material-ui/system';
+
 
 
 
@@ -22,7 +24,7 @@ export default () => {
     <div className="container">
         <div className="header">
             <div className="titleholder">
-                <img className="logo" src={logo}></img>
+                <img className="logo" src={logo} alt=""></img>
                 <h1 className="maintitle">MiniTube</h1>
 
             </div>

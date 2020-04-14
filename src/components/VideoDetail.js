@@ -2,7 +2,7 @@ import React from 'react';
 import logo2 from '../img/golem.svg';
 
 export default ({ video }) => {
-  if (!video) return <div class="loading"><img src={logo2}></img></div>;
+  if (!video) return <div class="loading"><img src={logo2} alt=""></img><p>A simple react app using youtube api public service, type a search keyword on the imput textbox above to test</p></div>;
 
   const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
 
