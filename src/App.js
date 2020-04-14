@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
 
-function App() {
+
+
+import youtube from './api/youtube';
+
+import './main.css';
+
+import logo from './img/hastelady.svg'
+
+
+import {SearchBar,VideoDetail,VideoList} from './components';
+import { height, width, maxWidth, minHeight } from '@material-ui/system';
+
+
+
+export default () => {
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+        <div className="header">
+            <div className="titleholder">
+                <img className="logo" src={logo}></img>
+                <h1 className="maintitle">MiniTube</h1>
+
+            </div>
+        </div>        
+       
+        <SearchBar onSubmit={handleSubmit} />
+        <div className="videoscontainer">
+            <div className="videoplayer">
+                <VideoDetail video={selectedVideo} />
+            </div>
+            
+            <VideoList videos={videos} onVideoSelect={setSelectedVideo} />
+            
+        
+        </div>   
+         
+        
+        
+      
     </div>
   );
-}
 
-export default App;
+  async function handleSubmit(searchTerm) {
+    const { data: { items: videos } } = await youtube.get("search", {
+      params: {
+        part: "snippet",
+        maxResults: 5,
+        key: 'AIzaSyD-YQvceS6sYdETKTr-uXPoBahCmEa2j3M',
+        q: searchTerm,
+      }
+    });
+
+    setVideos(videos);
+    setSelectedVideo(videos[0]);
+  }
+}
